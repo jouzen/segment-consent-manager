@@ -15,6 +15,7 @@ interface AnalyticsParams {
   devMode?: boolean
   defaultDestinationBehavior?: DefaultDestinationBehavior
   categoryPreferences: CategoryPreferences | null | undefined
+  loadOptions?: SegmentAnalytics.SegmentOpts
 }
 
 function getConsentMiddleware(
@@ -40,7 +41,8 @@ export default function conditionallyLoadAnalytics({
   shouldReload = true,
   devMode = false,
   defaultDestinationBehavior,
-  categoryPreferences
+  categoryPreferences,
+  loadOptions = {}
 }: AnalyticsParams) {
   const wd = window as WindowWithAJS
   const integrations = { All: false, 'Segment.io': true }
@@ -53,7 +55,7 @@ export default function conditionallyLoadAnalytics({
 
     // Load a.js normally when consent isn't required and there's no preferences
     if (!wd.analytics.initialized) {
-      wd.analytics.load(writeKey)
+      wd.analytics.load(writeKey, loadOptions)
     }
     return
   }
@@ -93,9 +95,9 @@ export default function conditionallyLoadAnalytics({
       categoryPreferences,
       defaultDestinationBehavior
     )
-    // @ts-ignore: Analytics.JS type should be updated with addSourceMiddleware
+
     wd.analytics.addSourceMiddleware(middleware)
 
-    wd.analytics.load(writeKey, { integrations })
+    wd.analytics.load(writeKey, { integrations, ...loadOptions })
   }
 }

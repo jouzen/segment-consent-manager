@@ -161,7 +161,7 @@ describe('analytics', () => {
 
     expect(ajsLoad.calledOnce).toBe(true)
     expect(ajsLoad.args[0][0]).toBe(writeKey)
-    expect(ajsLoad.args[0][1]).toBeUndefined()
+    expect(ajsLoad.args[0][1]).toStrictEqual({})
   })
 
   test('still applies preferences when consent isn՚t required', () => {
