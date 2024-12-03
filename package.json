@@ -8,7 +8,10 @@
     "analytics",
     "analytics.js"
   ],
-  "repository": "@jouzen/segment-consent-manager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jouzen/segment-consent-manager.git"
+  },
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
