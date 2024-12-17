@@ -334,7 +334,8 @@ export default class ConsentManagerBuilder extends Component<Props, State> {
       cookieExpires,
       cookieAttributes,
       mapCustomPreferences,
-      defaultDestinationBehavior
+      defaultDestinationBehavior,
+      loadOptions
     } = this.props
 
     this.setState(prevState => {
@@ -390,7 +391,8 @@ export default class ConsentManagerBuilder extends Component<Props, State> {
         shouldReload,
         devMode,
         defaultDestinationBehavior,
-        categoryPreferences: customPreferences
+        categoryPreferences: customPreferences,
+        loadOptions
       })
 
       return {
